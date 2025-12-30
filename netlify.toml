@@ -1,12 +1,16 @@
 [build]
+  # Keep this as client
   base = "client"
-  # This command forces npm to install everything before building
+  
+  # This worked! Keep it.
   command = "npm install --include=dev && npm run build:client"
+  
+  # CHANGE THIS: Remove 'client/' from the start. 
+  # Because 'base' is already 'client', Netlify is already inside that folder.
   publish = "dist"
 
 [build.environment]
   NODE_VERSION = "20"
-  # Adding this as a backup
   NPM_FLAGS = "--include=dev"
 
 [[redirects]]
