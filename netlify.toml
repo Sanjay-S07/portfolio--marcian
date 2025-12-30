@@ -1,11 +1,12 @@
 [build]
-  # Keep this; it tells Netlify to enter the client folder
+  # Keep this as client (Netlify enters this folder)
   base = "client"
 
-  # Keep this; it ensures Vite is installed and runs the build
+  # Keep this (This command worked and built the site)
   command = "npm install --include=dev && npm run build:client"
 
-  # UPDATED: Point to the folder where Vite actually puts the files
+  # CHANGE THIS: Remove "client/" from the start. 
+  # It should just be "dist/spa" because you are already IN the client folder.
   publish = "dist/spa"
 
 [build.environment]
