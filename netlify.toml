@@ -1,26 +1,20 @@
 [build]
-  # Tell Netlify to enter the 'client' folder first
+  # 1. Start everything from the client folder
   base = "client"
-  
-  # Run the specific client build script from your package.json
+
+  # 2. Run the build command
   command = "npm run build:client"
-  
-  # Vite outputs to 'dist' inside the 'client' folder
+
+  # 3. Use 'dist' (Since the base is 'client', this points to client/dist)
   publish = "dist"
 
 [build.environment]
-  # Ensures Vite is installed even if it's in devDependencies
+  # 4. Forces Vite installation
   NPM_CONFIG_PRODUCTION = "false"
   NODE_VERSION = "20"
 
 [[redirects]]
-  # This handles React Router refreshes (prevents 404s)
+  # 5. Fixed React Router Refresh Error
   from = "/*"
   to = "/index.html"
-  status = 200
-
-[[redirects]]
-  # This points frontend API calls to Netlify Functions
-  from = "/api/*"
-  to = "/.netlify/functions/api/:splat"
   status = 200
