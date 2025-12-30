@@ -1,15 +1,26 @@
 [build]
-  command = "npm run build:client"
-  functions = "netlify/functions"
-  publish = "dist/spa"
-
-
-[functions]
-  external_node_modules = ["express"]
-  node_bundler = "esbuild"
+  # Tell Netlify to enter the 'client' folder first
+  base = "client"
   
+  # Run the specific client build script from your package.json
+  command = "npm run build:client"
+  
+  # Vite outputs to 'dist' inside the 'client' folder
+  publish = "dist"
+
+[build.environment]
+  # Ensures Vite is installed even if it's in devDependencies
+  NPM_CONFIG_PRODUCTION = "false"
+  NODE_VERSION = "20"
+
 [[redirects]]
-  force = true
-  from = "/api/*"
+  # This handles React Router refreshes (prevents 404s)
+  from = "/*"
+  to = "/index.html"
   status = 200
+
+[[redirects]]
+  # This points frontend API calls to Netlify Functions
+  from = "/api/*"
   to = "/.netlify/functions/api/:splat"
+  status = 200
