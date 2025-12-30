@@ -7,7 +7,7 @@
 
   # CHANGE THIS: Remove "client/" from the start. 
   # It should just be "dist/spa" because you are already IN the client folder.
-  publish = "dist/spa"
+  publish = "client/dist/spa"
 
 [build.environment]
   NODE_VERSION = "20"
