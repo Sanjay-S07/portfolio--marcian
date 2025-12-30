@@ -1,20 +1,15 @@
 [build]
-  # 1. Start everything from the client folder
   base = "client"
-
-  # 2. Run the build command
-  command = "npm run build:client"
-
-  # 3. Use 'dist' (Since the base is 'client', this points to client/dist)
+  # This command forces npm to install everything before building
+  command = "npm install --include=dev && npm run build:client"
   publish = "dist"
 
 [build.environment]
-  # 4. Forces Vite installation
-  NPM_CONFIG_PRODUCTION = "false"
   NODE_VERSION = "20"
+  # Adding this as a backup
+  NPM_FLAGS = "--include=dev"
 
 [[redirects]]
-  # 5. Fixed React Router Refresh Error
   from = "/*"
   to = "/index.html"
   status = 200
