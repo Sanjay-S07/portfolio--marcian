@@ -1,20 +1,14 @@
 [build]
-  # 1. Start the build from the client folder
   base = "client"
-
-  # 2. Command to install Vite and build the site
   command = "npm install --include=dev && npm run build:client"
+  publish = "dist/spa"
 
-  # 3. Path relative to the base directory above.
-  # Vite is outputting to 'dist/spa' inside the client folder.
-  publish = ""
-
-[build.environment]
-  NODE_VERSION = "20"
-  NPM_FLAGS = "--include=dev"
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Content-Type = "application/javascript"
 
 [[redirects]]
-  # This fixes the common 404 error when refreshing a React Router page
   from = "/*"
   to = "/index.html"
   status = 200
